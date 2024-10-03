@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: AnimatedSmoothIndicator(
                 count: onBoardinglist.length,
                 activeIndex: _currentIndex,
-                effect: ExpandingDotsEffect(
+                effect: ScrollingDotsEffect(
                     dotColor: AppColor.grey, activeDotColor: AppColor.black),
               ),
             ),

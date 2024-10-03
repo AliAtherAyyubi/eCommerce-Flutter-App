@@ -21,15 +21,15 @@ class _SalesAdCardState extends State<SalesAdCard> {
   final List<Map<String, String>> items = [
     {
       'image': 'assets/components/product.png',
-      'title': 'Item 1',
+      'title': '50-40% OFF',
     },
     {
       'image': 'assets/components/product.png',
-      'title': 'Item 2',
+      'title': '70-40% OFF',
     },
     {
       'image': 'assets/components/product.png',
-      'title': 'Item 3',
+      'title': '90-20% OFF',
     },
   ];
   @override
@@ -66,7 +66,7 @@ class _SalesAdCardState extends State<SalesAdCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '50-40% OFF',
+                          items[index]['title'] ?? "50-40% OFF",
                           style: AppTypo.bold.copyWith(
                             fontSize: 20,
                             color: AppColor.white,
@@ -76,7 +76,7 @@ class _SalesAdCardState extends State<SalesAdCard> {
                           height: 5,
                         ),
                         Text(
-                          'Now in (product) \n All colours',
+                          'Now in (product) \n All colors',
                           style: AppTypo.regular14.copyWith(
                             fontSize: 12,
                             color: AppColor.white,

@@ -1,9 +1,16 @@
+import 'package:ecommerce_code/Screens/Home/product.dart';
 import 'package:ecommerce_code/Screens/Home/salesCard.dart';
+import 'package:ecommerce_code/Screens/Home/sponserCard.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/avatar.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/filterBtns.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/logo.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/textfield.dart';
+import 'package:ecommerce_code/Screens/widgets/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/home/dealBanner.dart';
 import 'package:ecommerce_code/Screens/widgets/home/fashionCard.dart';
+import 'package:ecommerce_code/Screens/widgets/home/offerBanner.dart';
+import 'package:ecommerce_code/Screens/widgets/home/productCard.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
@@ -32,34 +39,9 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  'All Featured',
-                  style: AppTypo.semibold14.copyWith(fontSize: 18),
-                )),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 5),
-                        child: CustomButtons(
-                            onTap: () {},
-                            icon: FontAwesomeIcons.sort,
-                            title: 'Sort'),
-                      ),
-                      CustomButtons(
-                          onTap: () {},
-                          icon: FontAwesomeIcons.filter,
-                          title: 'Filter'),
-                    ],
-                  ),
-                )
-              ],
-            ),
+            FilterBtnsRow(
+                title: 'All Featured', sortFunc: () {}, filterFunc: () {}),
+            //
             SizedBox(
               height: 20,
             ),
@@ -96,7 +78,95 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            SalesAdCard()
+            SalesAdCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DealBannerW(
+              title: 'Deal of the Day',
+              bgClr: AppColor.lightBlue,
+              icon: Icons.alarm,
+              durationInDays: 2,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 100.w,
+              height: 38.h,
+              child: ListView.builder(
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: ProductCard(
+                        title: 'Labbin White Sneakers shoes',
+                        description:
+                            'Step into unparalleled comfort with ComfortMax Running Shoes, designed for athletes and casual runners alike. Crafted with a lightweight, breathable mesh upper',
+                        price: 2000,
+                        oldPrice: 2500,
+                        discount: 25,
+                        rating: 5,
+                      ),
+                    );
+                  }),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            SpecialOfferBanner(),
+            const SizedBox(
+              height: 15,
+            ),
+            HomeProductCard(),
+            //
+            SizedBox(
+              height: 15,
+            ),
+            DealBannerW(
+              title: 'Trending Products',
+              date: 'Last Date 12/08/24',
+              bgClr: AppColor.primary2,
+              icon: Icons.calendar_month_outlined,
+              durationInDays: 10,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: 100.w,
+              height: 38.h,
+              child: ListView.builder(
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: ProductCard(
+                        title: 'Labbin White Sneakers shoes',
+                        description:
+                            'Step into unparalleled comfort with ComfortMax Running Shoes, designed for athletes and casual runners alike. Crafted with a lightweight, breathable mesh upper',
+                        price: 2000,
+                        oldPrice: 2500,
+                        discount: 25,
+                        rating: 5,
+                        isShadow: false,
+                      ),
+                    );
+                  }),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SummerSaleCard(),
+            SizedBox(
+              height: 10,
+            ),
+            SponsoredCard(),
+            SizedBox(
+              height: 50,
+            )
           ],
         ));
   }
@@ -109,38 +179,3 @@ final List<Map<String, dynamic>> items = [
   {'image': 'assets/components/mens.png', 'title': 'Mens'},
   {'image': 'assets/components/women.png', 'title': 'Womens'},
 ];
-
-class HomeAppBar extends StatelessWidget {
-  TextEditingController searchController;
-  HomeAppBar({super.key, required this.searchController});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: AppBar(
-        leading: CircleAvatar(
-          backgroundColor: AppColor.lightGrey3,
-          radius: 2,
-          child: Image.asset(
-            'assets/icons/menu.png',
-            fit: BoxFit.cover,
-          ),
-        ),
-        title: MyLogo(
-          height: 60,
-          width: 100,
-        ),
-        actions: [Avatar()],
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(10),
-          child: SearchInput(
-              textController: searchController,
-              hintText: 'Search any Product...'),
-        ),
-        backgroundColor: AppColor.white,
-      ),
-    );
-  }
-}

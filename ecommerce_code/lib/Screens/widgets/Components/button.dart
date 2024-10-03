@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class PrimaryButton extends StatefulWidget {
   final IconData? suffixIcon;
   final bool loading;
   final Color? bgColor;
+  TextStyle? textStyle;
   bool isBorder;
   //
   PrimaryButton(
@@ -22,6 +25,7 @@ class PrimaryButton extends StatefulWidget {
       required this.text,
       this.width,
       this.height,
+      this.textStyle,
       this.elevation,
       this.borderRadius,
       this.fontSize,
@@ -85,10 +89,10 @@ class _PrimaryButtonState extends State<PrimaryButton>
           child: Container(
             height: widget.height ?? 55,
             alignment: Alignment.center,
-            width: widget.width ?? 90.w,
+            width: widget.width ?? 100.w,
             decoration: BoxDecoration(
               border: widget.isBorder
-                  ? Border.all(color: AppColor.white, width: 1)
+                  ? Border.all(color: AppColor.white, width: 1.5)
                   : null,
               color: widget.bgColor ?? AppColor.primary,
               borderRadius: BorderRadius.circular(widget.borderRadius ?? 4),
@@ -102,8 +106,9 @@ class _PrimaryButtonState extends State<PrimaryButton>
                     children: [
                       Text(
                         widget.text,
-                        style: AppTypo.button
-                            .copyWith(fontSize: widget.fontSize ?? 20),
+                        style: widget.textStyle ??
+                            AppTypo.button
+                                .copyWith(fontSize: widget.fontSize ?? 20),
                       ),
                       widget.suffixIcon != null
                           ? Padding(
@@ -127,15 +132,31 @@ class _PrimaryButtonState extends State<PrimaryButton>
 ///
 ///
 
-class CustomButtons extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
-  final IconData icon;
+  final Icon? prefixIcon;
+  final Icon? suffixIcon;
   final String title;
-  const CustomButtons(
-      {super.key,
-      required this.onTap,
-      required this.icon,
-      required this.title});
+  final double? height;
+  final double? width;
+  final double? borderRadius;
+  final Border? border;
+  final Color? bgColor;
+  final TextStyle? textStyle;
+
+  CustomButton({
+    super.key,
+    required this.onTap,
+    this.prefixIcon,
+    this.suffixIcon,
+    required this.title,
+    this.height,
+    this.width,
+    this.borderRadius,
+    this.border,
+    this.bgColor,
+    this.textStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -143,28 +164,34 @@ class CustomButtons extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
-        height: 35,
-        // width: 80,
+        height: height ?? 35,
+        width: width ??
+            null, // If width is not provided, container will auto-adjust
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: AppColor.white,
-            boxShadow: [
-              BoxShadow(
-                  // offset: const Offset(12, 26),
-                  blurRadius: 10,
-                  spreadRadius: 0,
-                  color: Colors.grey.withOpacity(0.2)),
-            ]),
+          color: bgColor ?? AppColor.white,
+          border: border,
+          borderRadius: BorderRadius.circular(borderRadius ?? 10),
+          // boxShadow: [
+          //   BoxShadow(
+          //     blurRadius: 10,
+          //     spreadRadius: 0,
+          //     color: Colors.grey.withOpacity(0.2),
+          //   ),
+          // ],
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title, style: AppTypo.regular14.copyWith(fontSize: 16)),
-            const SizedBox(width: 10),
-            Icon(
-              icon,
-              size: 18,
-              color: AppColor.black2,
+            if (prefixIcon != null) prefixIcon!,
+            if (prefixIcon != null)
+              const SizedBox(width: 10), // Add space if prefixIcon exists
+            Text(
+              title,
+              style: textStyle ?? AppTypo.regular14.copyWith(fontSize: 16),
             ),
+            if (suffixIcon != null)
+              const SizedBox(width: 10), // Add space if suffixIcon exists
+            if (suffixIcon != null) suffixIcon!,
           ],
         ),
       ),
