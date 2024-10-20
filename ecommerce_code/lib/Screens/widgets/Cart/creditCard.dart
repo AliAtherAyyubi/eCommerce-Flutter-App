@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CreditCard extends StatefulWidget {
   final String? holderName;
   final String? cardNumber;
-  final Function? onTopRightButtonClicked;
+  final VoidCallback? dotTap;
   final Gradient backgroundGradient;
   final String? logo;
   Color? iconClr;
@@ -13,7 +13,7 @@ class CreditCard extends StatefulWidget {
   CreditCard({
     super.key,
     this.holderName,
-    this.onTopRightButtonClicked,
+    this.dotTap,
     // this.cardIcon,
     this.cardNumber,
     this.logo,
@@ -58,9 +58,7 @@ class _CreditCardState extends State<CreditCard> {
                 color: Colors.white,
                 size: 30,
               ),
-              onPressed: () {
-                widget.onTopRightButtonClicked!();
-              },
+              onPressed: widget.dotTap,
             )
           ]),
           SizedBox(
@@ -89,7 +87,7 @@ class _CreditCardState extends State<CreditCard> {
                       height: 10,
                     ),
                     Text(
-                      widget.holderName!.toUpperCase() ?? 'Your Name',
+                      widget.holderName ?? 'Your Name',
                       style: AppTypo.semibold14
                           .copyWith(fontSize: 16, color: Colors.white),
                     ),

@@ -1,69 +1,94 @@
+import 'package:ecommerce_code/API/fetch.dart';
 import 'package:ecommerce_code/Screens/Cart/prdouctDetail.dart';
+import 'package:ecommerce_code/Screens/Home/AllProducts.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/filterBtns.dart';
-import 'package:ecommerce_code/Screens/widgets/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/loading.dart';
 import 'package:ecommerce_code/Screens/widgets/home/productCard.dart';
+import 'package:ecommerce_code/Utils/Applayout.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:redacted/redacted.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class WishListScreen extends StatelessWidget {
+class WishListScreen extends StatefulWidget {
   WishListScreen({super.key});
+
+  @override
+  State<WishListScreen> createState() => _WishListScreenState();
+}
+
+class _WishListScreenState extends State<WishListScreen> {
   final TextEditingController _searchController = TextEditingController();
-  int itemCount = 52086;
+
+  List<dynamic> productMap = [];
+  Future<void> fetchProducts() async {
+    productMap = await Store().fetchProducts();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // fetchProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenClr,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(120),
-        child: HomeAppBar(
-          searchController: _searchController,
+        preferredSize: Size.fromHeight(40),
+        child: CustomAppBar(
+          title: 'Wishlist',
+          isleading: false,
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: AppLayout.screenSpace,
+        scrollDirection: Axis.vertical,
         children: [
-          SizedBox(
-            height: 15,
-          ),
-          FilterBtnsRow(
-              title: '$itemCount+ items', sortFunc: () {}, filterFunc: () {}),
           SizedBox(
             height: 10,
           ),
+
           //
-          SizedBox(
-            height: 100.h,
-            width: 100.w,
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Number of items in a row
-                  crossAxisSpacing: 20, // Spacing between columns
-                  mainAxisSpacing: 20, // Spacing between rows
-                  childAspectRatio: 0.6, // Adjust the item height/width ratio
-                ),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return ProductDetailScreen();
-                      }));
-                    },
-                    child: ProductCard(
-                      title: 'Mens Starry',
-                      description:
-                          'Mens Starry Sky Printed Shirt 100% Cotton Fabric',
-                      price: 10,
-                      oldPrice: 20,
-                      discount: 25,
-                      rating: 5,
-                      borderRadius: 10,
-                      isimageRadius: true,
-                    ),
-                  );
-                }),
+          ProductListing(
+            itemCount: 7,
+            isfavourite: true,
           )
+        ],
+      ),
+    );
+  }
+}
+
+class Card extends StatelessWidget {
+  const Card({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      width: 50,
+      color: Colors.purple,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('hello'),
+          Text('hello'),
+          Text('hello'),
+          SizedBox(
+            height: 10,
+          ),
+          // PrimaryButton(
+          //   onTap: () {},
+          //   text: 'Redacted',
+          //   width: 80.w,
+          // )
         ],
       ),
     );

@@ -38,6 +38,11 @@ class AppTypo {
     fontWeight: FontWeight.w500, // medium
     color: Colors.black,
   );
+  static TextStyle medium14 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w500, // medium
+    color: Colors.black,
+  );
   static TextStyle medium16 = GoogleFonts.montserrat(
     fontSize: 16,
     fontWeight: FontWeight.w500, // medium
@@ -51,6 +56,11 @@ class AppTypo {
   );
   static TextStyle regular = GoogleFonts.montserrat(
     fontSize: 10,
+    fontWeight: FontWeight.w400, // regular
+    color: Colors.black,
+  );
+  static TextStyle regular12 = GoogleFonts.montserrat(
+    fontSize: 12,
     fontWeight: FontWeight.w400, // regular
     color: Colors.black,
   );
@@ -70,6 +80,11 @@ class AppTypo {
   // Button Text Style with extra-bold weight
   static TextStyle button = GoogleFonts.montserrat(
     fontSize: 20,
+    fontWeight: FontWeight.w600, // semibold
+    color: Colors.white,
+  );
+  static TextStyle button2 = GoogleFonts.montserrat(
+    fontSize: 16,
     fontWeight: FontWeight.w600, // semibold
     color: Colors.white,
   );

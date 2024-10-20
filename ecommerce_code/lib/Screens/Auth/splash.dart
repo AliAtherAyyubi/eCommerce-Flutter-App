@@ -1,3 +1,4 @@
+import 'package:ecommerce_code/Screens/Auth/login.dart';
 import 'package:ecommerce_code/Screens/onboarding/onboarding.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/logo.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // Future.delayed(
-    //   Duration(seconds: 2),
-    //   () => Navigator.pushReplacement(
-    //       context, MaterialPageRoute(builder: (context) => OnBoardingScreen())),
-    // );
+    Future.delayed(
+      Duration(seconds: 2),
+      () => Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginScreen())),
+    );
   }
 
   @override

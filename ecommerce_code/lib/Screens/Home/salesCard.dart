@@ -90,7 +90,7 @@ class _SalesAdCardState extends State<SalesAdCard> {
                           text: 'Shop Now',
                           isBorder: true,
                           fontSize: 14,
-                          width: 31.w,
+                          width: 32.w,
                           height: 45,
                           borderRadius: 10,
                           suffixIcon: FontAwesomeIcons.arrowRight,

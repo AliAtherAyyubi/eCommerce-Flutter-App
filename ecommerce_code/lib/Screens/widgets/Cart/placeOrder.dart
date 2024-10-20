@@ -1,7 +1,7 @@
 import 'package:ecommerce_code/Screens/widgets/Cart/itemReview.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/labels.dart';
-import 'package:ecommerce_code/Screens/widgets/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenClr,
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: CustomAppBar(
           title: 'Shopping Bag',

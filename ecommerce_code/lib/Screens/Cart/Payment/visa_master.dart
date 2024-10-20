@@ -2,6 +2,7 @@ import 'package:ecommerce_code/Screens/widgets/Cart/creditCard.dart';
 import 'package:ecommerce_code/Screens/widgets/Cart/creditcardfield.dart';
 import 'package:ecommerce_code/Utils/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CreditCardForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -18,6 +19,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   TextEditingController cardholderName = TextEditingController();
   TextEditingController CVV = TextEditingController();
   TextEditingController expiryDate = TextEditingController();
+
   //
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,10 @@ class _CreditCardFormState extends State<CreditCardForm> {
         child: Column(
           children: [
             CreditCard(
-              cardNumber: cardNumber.text,
-              holderName: cardholderName.text,
+              cardNumber: cardNumber.text == '' ? null : cardNumber.text,
+              holderName: cardholderName.text == ''
+                  ? null
+                  : cardholderName.text.capitalize,
               logo: widget.isVisa
                   ? 'assets/icons/visa.png'
                   : 'assets/icons/mastercard2.png',

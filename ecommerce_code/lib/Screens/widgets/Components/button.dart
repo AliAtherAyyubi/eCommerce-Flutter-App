@@ -80,49 +80,42 @@ class _PrimaryButtonState extends State<PrimaryButton>
             reverseCurve: Curves.easeIn,
           ),
         ),
-        child: Card(
-          elevation: widget.elevation ?? 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius ?? 4),
+        child: Container(
+          height: widget.height ?? 55,
+          alignment: Alignment.center,
+          width: widget.width ?? 100.w,
+          decoration: BoxDecoration(
+            border: widget.isBorder
+                ? Border.all(color: AppColor.white, width: 1.5)
+                : null,
+            color: widget.bgColor ?? AppColor.primary,
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
           ),
-          color: widget.bgColor,
-          child: Container(
-            height: widget.height ?? 55,
-            alignment: Alignment.center,
-            width: widget.width ?? 100.w,
-            decoration: BoxDecoration(
-              border: widget.isBorder
-                  ? Border.all(color: AppColor.white, width: 1.5)
-                  : null,
-              color: widget.bgColor ?? AppColor.primary,
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 4),
-            ),
-            child: widget.loading
-                ? CircularProgressIndicator(
-                    color: Colors.white,
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.text,
-                        style: widget.textStyle ??
-                            AppTypo.button
-                                .copyWith(fontSize: widget.fontSize ?? 20),
-                      ),
-                      widget.suffixIcon != null
-                          ? Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Icon(
-                                widget.suffixIcon,
-                                size: 20,
-                                color: AppColor.white,
-                              ),
-                            )
-                          : Container()
-                    ],
-                  ),
-          ),
+          child: widget.loading
+              ? CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.text,
+                      style: widget.textStyle ??
+                          AppTypo.button
+                              .copyWith(fontSize: widget.fontSize ?? 20),
+                    ),
+                    widget.suffixIcon != null
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Icon(
+                              widget.suffixIcon,
+                              size: 20,
+                              color: AppColor.white,
+                            ),
+                          )
+                        : Container()
+                  ],
+                ),
         ),
       ),
     );

@@ -11,30 +11,31 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: AppBar(
-        leading: CircleAvatar(
-            backgroundColor: AppColor.lightGrey3,
-            radius: 2,
-            child: Icon(
-              Icons.menu_sharp,
-              size: 25,
-            )),
-        title: MyLogo(
-          height: 60,
-          width: 100,
-        ),
-        actions: [Avatar()],
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(10),
+    return AppBar(
+      // leading: CircleAvatar(
+      //     backgroundColor: AppColor.lightGrey3,
+      //     radius: 2,
+      //     child: Icon(
+      //       Icons.menu_sharp,
+      //       size: 25,
+      //     )),
+      title: MyLogo(
+        height: 60,
+        width: 100,
+      ),
+      actions: [Avatar()],
+      centerTitle: true,
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(10),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 5),
           child: SearchInput(
               textController: searchController,
               hintText: 'Search any Product...'),
         ),
-        backgroundColor: AppColor.screenClr,
       ),
+      elevation: 0,
+      backgroundColor: AppColor.screenClr,
     );
   }
 }
@@ -46,11 +47,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconData? trailingIcon;
   final VoidCallback? onBackPressed;
   final VoidCallback? onTrailingTap;
+  bool isleading;
 
-  const CustomAppBar({
+  CustomAppBar({
     Key? key,
     this.title,
     this.trailingIcon,
+    this.isleading = true,
     this.onBackPressed,
     this.onTrailingTap,
   }) : super(key: key);
@@ -58,11 +61,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-        iconSize: 30,
-        onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
-      ),
+      leading: isleading
+          ? IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+              iconSize: 30,
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+            )
+          : null,
       title: title != null
           ? Text(
               title!,

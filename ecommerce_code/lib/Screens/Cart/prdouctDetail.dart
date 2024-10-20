@@ -1,7 +1,8 @@
 import 'package:ecommerce_code/Screens/Cart/Payment/payment.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/filterBtns.dart';
-import 'package:ecommerce_code/Screens/widgets/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/photoView.dart';
 import 'package:ecommerce_code/Screens/widgets/home/productCard.dart';
 import 'package:ecommerce_code/Screens/widgets/Cart/prodDetailCard.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
@@ -12,7 +13,17 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  ProductDetailScreen({super.key});
+  String? title;
+  String? description;
+  double? price;
+  List? imageList;
+
+  ProductDetailScreen(
+      {super.key,
+      required this.title,
+      this.price,
+      this.description,
+      this.imageList});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -28,11 +39,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenClr,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(40),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
         child: CustomAppBar(
           title: 'Product Details',
-          trailingIcon: Icons.shopping_cart_outlined,
         ),
       ),
       body: ListView(
@@ -48,7 +58,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             width: 100.w,
             child: PageView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: imgCount,
+                itemCount: widget.imageList!.length,
                 physics: const BouncingScrollPhysics(),
                 controller: _pageController,
                 onPageChanged: (index) {
@@ -57,15 +67,35 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   });
                 },
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    height: 42.h,
-                    width: 100.w,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        'assets/store/shoesMan.png',
-                        fit: BoxFit.contain,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FullScreenImageGallery(
+                            imageList: widget.imageList!,
+                            initialIndex: index,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      height: 50.h,
+                      width: 100.w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(widget.imageList![index],
+                            fit: BoxFit.cover, errorBuilder:
+                                (BuildContext context, Object exception,
+                                    StackTrace? stackTrace) {
+                          return Image.asset(
+                            'assets/images/error.jpg', // Your fallback asset image
+                            height: 250,
+                            width: 100.w,
+                            fit: BoxFit.cover,
+                          );
+                        }),
                       ),
                     ),
                   );
@@ -76,7 +106,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
           Center(
             child: AnimatedSmoothIndicator(
-              count: imgCount,
+              count: widget.imageList!.length,
               activeIndex: currentIndex,
               effect: ScaleEffect(
                   dotHeight: 10,
@@ -89,10 +119,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             height: 10,
           ),
           ProdcutDetailCard(
-            title: 'NIke Sneakers',
-            subTitle: 'Vision Alta Men’s Shoes Size (All Colours)',
-            price: 15,
-            oldPrice: 20,
+            title: widget.title ?? "Title",
+            price: widget.price ?? 15.23,
+            description: widget.description,
+            oldPrice: widget.price! + 20,
             discount: 10,
             rating: 56890,
           ),
@@ -130,7 +160,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   text: 'Add to Cart',
                   bgColor: AppColor.lightBlue,
                   borderRadius: 10,
+                  textStyle: AppTypo.button2,
                 ),
+              ),
+              SizedBox(
+                width: 10,
               ),
               Expanded(
                   child: PrimaryButton(
@@ -141,6 +175,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 text: 'Buy Now',
                 bgColor: Colors.green,
                 borderRadius: 10,
+                textStyle: AppTypo.button2,
               )),
             ],
           ),

@@ -4,15 +4,15 @@ import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class PaymentMethod extends StatefulWidget {
+class PaymentMethodChoiceW extends StatefulWidget {
   final GlobalKey<FormState> formKey;
 
-  PaymentMethod({super.key, required this.formKey});
+  PaymentMethodChoiceW({super.key, required this.formKey});
   @override
-  State<PaymentMethod> createState() => _PaymentMethodState();
+  State<PaymentMethodChoiceW> createState() => _PaymentMethodChoiceWState();
 }
 
-class _PaymentMethodState extends State<PaymentMethod> {
+class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
 //
   bool selectPayment = false;
   int paymentIndex = 0;
@@ -50,7 +50,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       paymentIndex = index;
                     });
                   },
-                  child: PaymentMethodOption(
+                  child: PaymentMethodChoiceWOption(
                     iconImg: paymentIcon[index],
                     selectMethod: paymentIndex == index,
                   ),
@@ -61,7 +61,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
           height: 15,
         ),
         SizedBox(
-          height: 52.h,
+          height: 60.h,
           child: PageView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: paymentCards.length,
@@ -82,10 +82,10 @@ class _PaymentMethodState extends State<PaymentMethod> {
   }
 }
 
-class PaymentMethodOption extends StatelessWidget {
+class PaymentMethodChoiceWOption extends StatelessWidget {
   String iconImg;
   bool selectMethod;
-  PaymentMethodOption(
+  PaymentMethodChoiceWOption(
       {super.key, required this.iconImg, this.selectMethod = false});
 
   @override

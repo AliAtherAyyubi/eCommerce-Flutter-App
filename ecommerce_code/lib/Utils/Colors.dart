@@ -7,12 +7,14 @@ class AppColor {
   static Color primary2 = Color(0xffFA7189);
   static Color dprimary = Color(0xffEB3030);
   static Color secondary = Color(0xffFA7189);
+  static Color secondary2 = Color.fromARGB(255, 252, 134, 156);
   static Color lightRed = Color(0xffFCF3F6);
   static Color darkGrey = Color(0xff676767);
   static Color darkGrey2 = Color(0xff626262);
   static Color darkGrey3 = Color(0xff828282);
   static Color grey = Color(0xffA8A8A9);
   static Color grey2 = Color(0xffBBBBBB);
+  static Color grey500 = Color(0xffA0A0A0);
   static Color lightGrey = Color(0xffC4C4C4);
   static Color lightGrey2 = Color(0xffF3F3F3);
   static Color lightGrey3 = Color(0xffF2F2F2);

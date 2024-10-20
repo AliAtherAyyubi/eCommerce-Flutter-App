@@ -1,7 +1,9 @@
+import 'package:ecommerce_code/Screens/MainScreen.dart';
 import 'package:ecommerce_code/Screens/onboarding/onboardCard.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -59,6 +61,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               elevation: 0,
               onTap: () {
                 if (_currentIndex == onBoardinglist.length - 1) {
+                  Get.to(MainScreen(), transition: Transition.native);
                 } else {
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 500),
@@ -74,7 +77,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   : 'Next',
               // borderRadius: 20,
               // height: 46,
-              // width: 327,
+              width: 90.w,
             ),
           ],
         ),

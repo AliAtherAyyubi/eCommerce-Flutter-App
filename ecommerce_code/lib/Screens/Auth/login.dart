@@ -1,3 +1,6 @@
+import 'package:ecommerce_code/Screens/Auth/forgot.dart';
+import 'package:ecommerce_code/Screens/Auth/register.dart';
+import 'package:ecommerce_code/Screens/MainScreen.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/textfield.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
@@ -5,6 +8,7 @@ import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,119 +24,134 @@ class _NgamarSignInViewState extends State<LoginScreen> {
   bool isRemember = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.white,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 50,
-                ),
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: Text('Welcome \nBack!', style: AppTypo.h1)),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: AppColor.white,
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: Text('Welcome \nBack!', style: AppTypo.h1)),
 
-                const SizedBox(height: 50),
-                // Email Field.
-                AuthField(
-                  title: 'Email Address',
-                  hintText: 'Username or Email',
-                  prefixIcon: Icons.person,
-                  controller: _emailController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Email is required';
-                    }
-                    return null;
-                  },
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
-                ),
-                const SizedBox(height: 15),
-                // Password Field.
-                AuthField(
-                  title: 'Password',
-                  prefixIcon: Icons.lock,
-                  hintText: 'Password',
-                  controller: _passwordController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password is required';
-                    } else if (value.length < 8) {
-                      return 'Password should be at least 8 characters long';
-                    }
-                    return null;
-                  },
-                  isPassword: true,
-                  keyboardType: TextInputType.visiblePassword,
-                  textInputAction: TextInputAction.done,
-                ),
-                const SizedBox(height: 5),
-                Row(
-                  children: [
-                    const Spacer(),
-                    CustomTextButton(
-                      onPressed: () {},
-                      text: 'Forgot Password?',
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                // Button //
-
-                PrimaryButton(
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {}
-                  },
-                  text: 'Login',
-                ),
-
-                /////
-
-                const SizedBox(height: 20),
-                const TextWithDivider(),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomSocialButton(
-                      onTap: () {},
-                      icon: FontAwesomeIcons.google,
-                    ),
-                    CustomSocialButton(
-                      onTap: () {},
-                      icon: FontAwesomeIcons.apple,
-                    ),
-                    CustomSocialButton(
-                      onTap: () {},
-                      icon: FontAwesomeIcons.facebookF,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                RichText(
-                  text: TextSpan(
-                    text: 'Don’t have an account? ',
-                    style:
-                        AppTypo.regular14.copyWith(color: AppColor.lightDark),
+                  const SizedBox(height: 50),
+                  // Email Field.
+                  AuthField(
+                    title: 'Email Address',
+                    hintText: 'Username or Email',
+                    prefixIcon: Icons.person,
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email is required';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                  ),
+                  const SizedBox(height: 15),
+                  // Password Field.
+                  AuthField(
+                    title: 'Password',
+                    prefixIcon: Icons.lock,
+                    hintText: 'Password',
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password is required';
+                      }
+                      return null;
+                    },
+                    isPassword: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.done,
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
                     children: [
-                      TextSpan(
-                          text: 'Sign Up',
-                          recognizer: TapGestureRecognizer()..onTap = () {},
-                          style: AppTypo.semibold14.copyWith(
-                            decoration: TextDecoration.underline,
-                            color: AppColor.primary,
-                          )),
+                      const Spacer(),
+                      CustomTextButton(
+                        onPressed: () {
+                          Get.to(ForgotScreen(),
+                              transition: Transition.rightToLeft);
+                        },
+                        text: 'Forgot Password?',
+                      ),
                     ],
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  const SizedBox(height: 15),
+                  // Button //
+
+                  PrimaryButton(
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MainScreen()));
+                      }
+                    },
+                    text: 'Login',
+                  ),
+
+                  /////
+
+                  const SizedBox(height: 20),
+                  const TextWithDivider(),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomSocialButton(
+                        onTap: () {},
+                        icon: FontAwesomeIcons.google,
+                      ),
+                      CustomSocialButton(
+                        onTap: () {},
+                        icon: FontAwesomeIcons.apple,
+                      ),
+                      CustomSocialButton(
+                        onTap: () {},
+                        icon: FontAwesomeIcons.facebookF,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 40),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Don’t have an account? ',
+                      style:
+                          AppTypo.regular14.copyWith(color: AppColor.lightDark),
+                      children: [
+                        TextSpan(
+                            text: 'Sign Up',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Get.to(RegisterScreen(),
+                                    transition: Transition.rightToLeft);
+                              },
+                            style: AppTypo.semibold14.copyWith(
+                              decoration: TextDecoration.underline,
+                              color: AppColor.primary,
+                            )),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -140,49 +159,6 @@ class _NgamarSignInViewState extends State<LoginScreen> {
     );
   }
 }
-
-// class AgreeTermsTextCard extends StatelessWidget {
-//   const AgreeTermsTextCard({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 40),
-//       child: RichText(
-//         text: TextSpan(
-//           text: 'By signing up you agree to our ',
-//           style: const TextStyle(
-//               fontSize: 14,
-//               fontWeight: FontWeight.w400,
-//               color: AppColors.kGrey70),
-//           children: [
-//             TextSpan(
-//                 text: 'Terms',
-//                 recognizer: TapGestureRecognizer()..onTap = () {},
-//                 style: const TextStyle(
-//                     fontSize: 14,
-//                     fontWeight: FontWeight.w400,
-//                     color: AppColors.kGrey100)),
-//             const TextSpan(
-//                 text: ' and ',
-//                 style: TextStyle(
-//                     fontSize: 14,
-//                     fontWeight: FontWeight.w400,
-//                     color: AppColors.kGrey70)),
-//             TextSpan(
-//                 text: 'Conditions of Use',
-//                 recognizer: TapGestureRecognizer()..onTap = () {},
-//                 style: const TextStyle(
-//                     fontSize: 14,
-//                     fontWeight: FontWeight.w400,
-//                     color: AppColors.kGrey100)),
-//           ],
-//         ),
-//         textAlign: TextAlign.center,
-//       ),
-//     );
-//   }
-// }
 
 class CustomSocialButton extends StatefulWidget {
   final IconData icon;
@@ -303,9 +279,9 @@ class CustomTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyle(
+        style: AppTypo.semibold14.copyWith(
           color: AppColor.primary,
-          fontSize: fontSize ?? 14,
+          fontSize: fontSize ?? 12,
         ),
       ),
     );

@@ -117,6 +117,7 @@ class _DealBannerWState extends State<DealBannerW> {
                       fontSize: 12,
                       color: AppColor.white,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               )

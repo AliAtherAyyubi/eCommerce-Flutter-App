@@ -7,13 +7,20 @@ class OrderCard extends StatelessWidget {
   final String confirmationStatus;
   final String price;
   final String date;
-
-  const OrderCard({
+  bool isConfirmed;
+  bool isPrepared;
+  bool isShipped;
+  VoidCallback? onTap;
+  OrderCard({
     Key? key,
     required this.transactionId,
     required this.confirmationStatus,
     required this.price,
     required this.date,
+    this.isConfirmed = true,
+    this.isPrepared = false,
+    this.isShipped = false,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -51,15 +58,50 @@ class OrderCard extends StatelessWidget {
                 width: 40,
               ),
               // Checkmark Icon
-              CircleAvatar(
-                radius: 13,
-                backgroundColor: Colors.purple[50],
-                child: Icon(
-                  Icons.check,
-                  color: Colors.purple,
-                  size: 16,
-                ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (isConfirmed) ...[
+                    const CircleAvatar(
+                      radius: 15,
+                      backgroundColor: Color.fromARGB(61, 191, 158, 225),
+                      child: Icon(
+                        Icons.check,
+                        color: Color(0xffA371F4),
+                        size: 17,
+                      ),
+                    ),
+                  ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  if (isPrepared) ...[
+                    const CircleAvatar(
+                      radius: 15,
+                      backgroundColor: Color.fromARGB(60, 255, 198, 42),
+                      child: Icon(
+                        Icons.card_giftcard,
+                        color: Color(0xffFCD240),
+                        size: 17,
+                      ),
+                    ),
+                  ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  if (isShipped) ...[
+                    const CircleAvatar(
+                      radius: 15,
+                      backgroundColor: Color.fromARGB(62, 22, 189, 240),
+                      child: Icon(
+                        Icons.local_shipping_outlined,
+                        color: Color(0xff007AFF),
+                        size: 17,
+                      ),
+                    ),
+                  ]
+                ],
+              )
             ],
           ),
           SizedBox(height: 15),
@@ -91,10 +133,13 @@ class OrderCard extends StatelessWidget {
                   fontSize: 12,
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey,
+              GestureDetector(
+                onTap: onTap,
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: AppColor.grey,
+                ),
               ),
             ],
           ),

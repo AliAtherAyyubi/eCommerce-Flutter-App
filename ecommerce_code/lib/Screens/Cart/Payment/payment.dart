@@ -4,7 +4,7 @@ import 'package:ecommerce_code/Screens/widgets/Cart/creditcardfield.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/alert.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/labels.dart';
-import 'package:ecommerce_code/Screens/widgets/appBar.dart';
+import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:ecommerce_code/Utils/validation.dart';
@@ -18,7 +18,7 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.screenClr,
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: CustomAppBar(
           title: 'Checkout',
@@ -40,7 +40,7 @@ class PaymentScreen extends StatelessWidget {
           SizedBox(
             height: 15,
           ),
-          PaymentMethod(
+          PaymentMethodChoiceW(
             formKey: paymentFormKey,
           ),
           //
