@@ -1,5 +1,6 @@
 import 'package:ecommerce_code/Screens/Auth/forgot.dart';
 import 'package:ecommerce_code/Screens/Auth/login.dart';
+import 'package:ecommerce_code/Screens/Auth/otp.dart';
 import 'package:ecommerce_code/Screens/Auth/register.dart';
 import 'package:ecommerce_code/Screens/Auth/welcome.dart';
 import 'package:ecommerce_code/Screens/Cart/cart.dart';
@@ -28,13 +29,13 @@ import 'package:device_preview/device_preview.dart';
 
 //
 void main() {
-  // runApp(
-  //   DevicePreview(
-  //     enabled: true,
-  //     builder: (context) => const MyApp(),
-  //   ),
-  // );
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const MyApp(),
+    ),
+  );
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: MainScreen(),
+        home: OtpScreen(),
       );
     });
   }

@@ -194,7 +194,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
               padding: EdgeInsets.all(5),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                index = widget.initialIndex + 2;
+                index = index + 2;
                 String title = productMap[index]['title'];
                 double price = (productMap[index]['price'] as int).toDouble();
                 String description = productMap[index]['description'];

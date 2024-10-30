@@ -5,17 +5,29 @@ import 'package:ecommerce_code/Screens/widgets/Components/alert.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/labels.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
+import 'package:ecommerce_code/Utils/Applayout.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:ecommerce_code/Utils/validation.dart';
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatelessWidget {
-  // const PaymentScreen({super.key});
+  double price;
+  double? shipping;
+  double? discount;
+  //
+  PaymentScreen({
+    super.key,
+    required this.price,
+    this.shipping,
+    this.discount,
+  });
   final GlobalKey<FormState> paymentFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    double total = price + shipping! - discount!;
+
     return Scaffold(
       backgroundColor: AppColor.screenClr,
       appBar: PreferredSize(
@@ -25,12 +37,10 @@ class PaymentScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
+        padding: AppLayout.screenSpace,
         children: [
           SizedBox(
-            height: 30,
+            height: 20,
           ),
 
           Text(
@@ -53,20 +63,20 @@ class PaymentScreen extends StatelessWidget {
           RowText(
             title: 'Order',
             titleStyle: t1,
-            rightText: '\$ 50',
+            rightText: '\$ ${price}',
             rightStyle: t2,
           ),
 
           RowText(
             title: 'Shipping',
             titleStyle: t1,
-            rightText: '\$ 20',
+            rightText: '\$ ${shipping ?? 10}',
             rightStyle: t2,
           ),
           RowText(
             title: 'Discount',
             titleStyle: t1,
-            rightText: '\$ -20',
+            rightText: '\$ -${discount ?? 20}',
             rightStyle: t2,
           ),
 
@@ -75,7 +85,7 @@ class PaymentScreen extends StatelessWidget {
           RowText(
             title: 'Total',
             titleStyle: AppTypo.medium16.copyWith(fontSize: 18),
-            rightText: '\$ 64',
+            rightText: '\$ $total',
             rightStyle: AppTypo.semibold14,
           ),
           SizedBox(

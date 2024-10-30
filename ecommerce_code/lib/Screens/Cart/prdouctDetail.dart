@@ -129,26 +129,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           SizedBox(
             height: 10,
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     ProductButtons(
-          //       onTap: () {},
-          //       title: 'Nearest Store',
-          //       prefixIcon: Icons.location_on_outlined,
-          //     ),
-          //     ProductButtons(
-          //       onTap: () {},
-          //       title: 'VIP',
-          //       prefixIcon: Icons.lock_outline_sharp,
-          //     ),
-          //     ProductButtons(
-          //       onTap: () {},
-          //       title: 'Return Policy',
-          //       prefixIcon: Icons.restart_alt,
-          //     ),
-          //   ],
-          // ),
+
           SizedBox(
             height: 15,
           ),
@@ -169,7 +150,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Expanded(
                   child: PrimaryButton(
                 onTap: () {
-                  Get.to(() => PaymentScreen(),
+                  Get.to(
+                      () => PaymentScreen(
+                            price: widget.price!,
+                            shipping: 10,
+                            discount: 20,
+                          ),
                       transition: Transition.rightToLeft);
                 },
                 text: 'Buy Now',
@@ -278,3 +264,23 @@ class ProductButtons extends StatelessWidget {
     );
   }
 }
+ // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     ProductButtons(
+          //       onTap: () {},
+          //       title: 'Nearest Store',
+          //       prefixIcon: Icons.location_on_outlined,
+          //     ),
+          //     ProductButtons(
+          //       onTap: () {},
+          //       title: 'VIP',
+          //       prefixIcon: Icons.lock_outline_sharp,
+          //     ),
+          //     ProductButtons(
+          //       onTap: () {},
+          //       title: 'Return Policy',
+          //       prefixIcon: Icons.restart_alt,
+          //     ),
+          //   ],
+          // ),

@@ -101,25 +101,28 @@ class _DealBannerWState extends State<DealBannerW> {
               ),
 
               ///
-              Row(
-                children: [
-                  Icon(
-                    widget.icon,
-                    size: 21,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    widget.date ?? formatTime(remainingSeconds),
-                    style: AppTypo.regular14.copyWith(
-                      fontSize: 12,
-                      color: AppColor.white,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Icon(
+                      widget.icon,
+                      size: 21,
+                      color: Colors.white,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      widget.date ?? formatTime(remainingSeconds),
+                      style: AppTypo.regular14.copyWith(
+                        fontSize: 12,
+                        color: AppColor.white,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               )
             ],
           )),

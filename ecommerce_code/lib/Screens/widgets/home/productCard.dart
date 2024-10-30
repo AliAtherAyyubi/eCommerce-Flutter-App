@@ -94,8 +94,8 @@ class _ProductCardState extends State<ProductCard> {
                       );
                     }),
                     Positioned(
-                        top: 2,
-                        right: 2,
+                        top: 5,
+                        right: 5,
                         child: GestureDetector(
                           onTap: () {
                             if (favourite) {

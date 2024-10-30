@@ -61,7 +61,7 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
           height: 15,
         ),
         SizedBox(
-          height: 60.h,
+          height: 55.h,
           child: PageView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: paymentCards.length,
