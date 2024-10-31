@@ -1,5 +1,7 @@
+import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/textfield.dart';
+import 'package:ecommerce_code/Utils/Applayout.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +21,12 @@ class _ForgotScreenState extends State<ForgotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(40),
+        child: CustomAppBar(),
+      ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding: AppLayout.screenSpace,
         children: [
           Text('Forgot \npassword?', style: AppTypo.h1),
           SizedBox(

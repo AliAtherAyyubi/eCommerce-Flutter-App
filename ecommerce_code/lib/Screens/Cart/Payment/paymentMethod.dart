@@ -1,6 +1,7 @@
 import 'package:ecommerce_code/Screens/Cart/Payment/paypal.dart';
 import 'package:ecommerce_code/Screens/Cart/Payment/visa_master.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
+import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -20,6 +21,26 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
   final PageController pageController = PageController(initialPage: 0);
   // int paymentIndex = 0;
 //
+  double formHeight = 55.h;
+
+  void formSize(int index) {
+    double tempIndex;
+    if (index == 0) {
+      tempIndex = 55.h;
+    } else if (index == 1) {
+      tempIndex = 10.h;
+    } else if (index == 2) {
+      tempIndex = 55.h;
+    } else if (index == 3) {
+      tempIndex = 5.h;
+    } else {
+      tempIndex = 55.h;
+    }
+    setState(() {
+      formHeight = tempIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> paymentCards = [
@@ -32,12 +53,16 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
         formKey: widget.formKey,
         isVisa: false,
       ),
-      Container()
+      Container(
+        child: Text(
+          'Cash on Delievery',
+          style: AppTypo.h2.copyWith(color: AppColor.secondary),
+        ),
+      )
     ];
-
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 90,
           child: ListView.builder(
               shrinkWrap: true,
@@ -46,6 +71,7 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
+                    formSize(index);
                     setState(() {
                       paymentIndex = index;
                     });
@@ -61,17 +87,12 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
           height: 15,
         ),
         SizedBox(
-          height: 55.h,
+          height: formHeight,
           child: PageView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: paymentCards.length,
               physics: const BouncingScrollPhysics(),
               controller: pageController,
-              // onPageChanged: (index) {
-              //   setState(() {
-              //     paymentIndex = index;
-              //   });
-              // },
               itemBuilder: (context, index) {
                 return paymentCards[paymentIndex];
               }),

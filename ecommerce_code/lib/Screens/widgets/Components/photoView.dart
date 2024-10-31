@@ -13,6 +13,7 @@ class FullScreenImageGallery extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: PhotoViewGallery.builder(
+        allowImplicitScrolling: true,
         scrollPhysics: const BouncingScrollPhysics(),
         builder: (BuildContext context, int index) {
           return PhotoViewGalleryPageOptions(

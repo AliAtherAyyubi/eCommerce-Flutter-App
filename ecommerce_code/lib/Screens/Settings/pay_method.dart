@@ -40,6 +40,7 @@ class PaymentMethodSetting extends StatelessWidget {
             height: 200,
             width: 100.w,
             child: Swiper(
+              loop: false,
               itemBuilder: (BuildContext context, int index) {
                 return CreditCard(
                   holderName: 'Your Name',
@@ -50,6 +51,7 @@ class PaymentMethodSetting extends StatelessWidget {
               itemHeight: 40.h,
               itemWidth: 90.w,
               layout: SwiperLayout.STACK,
+
               // customLayoutOption: Customla,
               pagination: null,
               control: null,

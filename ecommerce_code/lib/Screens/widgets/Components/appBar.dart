@@ -19,11 +19,12 @@ class HomeAppBar extends StatelessWidget {
       //       Icons.menu_sharp,
       //       size: 25,
       //     )),
+
       title: MyLogo(
         height: 60,
         width: 100,
       ),
-      actions: [Avatar()],
+      actions: [Padding(padding: EdgeInsets.only(right: 20), child: Avatar())],
       centerTitle: true,
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(10),

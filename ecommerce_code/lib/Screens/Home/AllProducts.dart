@@ -37,7 +37,7 @@ class _ProductListingState extends State<ProductListing> {
             height: 100.h,
             width: 100.w,
             child: GridView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of items in a row
                   crossAxisSpacing: 15, // Spacing between columns
