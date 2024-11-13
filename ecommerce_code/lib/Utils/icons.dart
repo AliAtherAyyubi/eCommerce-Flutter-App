@@ -11,4 +11,19 @@ class AppIcons {
     height: 2,
     fit: BoxFit.contain,
   );
+  static Image google = Image.asset(
+    'assets/icons/google.png',
+    height: 2,
+    fit: BoxFit.contain,
+  );
+  static Image apple = Image.asset(
+    'assets/icons/apple.png',
+    height: 2,
+    fit: BoxFit.contain,
+  );
+  static Image facebook = Image.asset(
+    'assets/icons/f.png',
+    height: 2,
+    fit: BoxFit.contain,
+  );
 }

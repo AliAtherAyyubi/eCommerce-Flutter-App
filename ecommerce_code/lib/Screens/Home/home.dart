@@ -1,6 +1,6 @@
 import 'package:ecommerce_code/API/fetch.dart';
-import 'package:ecommerce_code/Screens/Cart/prdouctDetail.dart';
-import 'package:ecommerce_code/Screens/Home/AllProducts.dart';
+import 'package:ecommerce_code/Screens/Products/AllProducts.dart';
+import 'package:ecommerce_code/Screens/Products/prdouctDetail.dart';
 import 'package:ecommerce_code/Screens/Home/product.dart';
 import 'package:ecommerce_code/Screens/Home/salesCard.dart';
 import 'package:ecommerce_code/Screens/Home/sponserCard.dart';
@@ -104,7 +104,9 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              TrendingProducts(),
+              TrendingProducts(
+                trend: 'shoes',
+              ),
 
               SizedBox(
                 height: 15,
@@ -130,7 +132,7 @@ class HomeScreen extends StatelessWidget {
               ),
               /////////
               TrendingProducts(
-                initialIndex: 15,
+                trend: 'phone',
               ),
               SizedBox(
                 height: 10,
@@ -143,7 +145,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              ProductListing()
+              // ProductListing()
             ],
           )),
     );
@@ -159,8 +161,9 @@ final List<Map<String, dynamic>> items = [
 ];
 
 class TrendingProducts extends StatefulWidget {
-  int initialIndex;
-  TrendingProducts({super.key, this.initialIndex = 5});
+  //
+  String trend;
+  TrendingProducts({super.key, required this.trend});
 
   @override
   State<TrendingProducts> createState() => _TrendingProductsState();
@@ -170,7 +173,7 @@ class _TrendingProductsState extends State<TrendingProducts> {
   List<dynamic> productMap = [];
 
   Future<void> fetchProducts() async {
-    productMap = await Store().fetchProducts();
+    productMap = await Store().searchProducts(widget.trend);
     // itemCount = productMap.length;
     setState(() {});
   }
@@ -185,39 +188,22 @@ class _TrendingProductsState extends State<TrendingProducts> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.w,
       height: 40.h,
       child: productMap.isNotEmpty
           ? ListView.builder(
-              itemCount: 5,
+              itemCount: productMap.length,
               shrinkWrap: true,
               padding: EdgeInsets.all(5),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                index = index + 2;
-                String title = productMap[index]['title'];
-                double price = (productMap[index]['price'] as int).toDouble();
-                String description = productMap[index]['description'];
+                // index = index + 2;
+
                 return Padding(
                   padding: EdgeInsets.only(right: 15),
                   child: ProductCard(
-                    title: title,
-                    description: description,
-                    price: price,
-                    imageUrl: productMap[index]['images'][0],
-                    oldPrice: 20,
-                    discount: 25,
-                    rating: 5,
+                    productData: productMap[index],
                     borderRadius: 10,
                     isimageRadius: true,
-                    onTap: () => Get.to(
-                        ProductDetailScreen(
-                          title: title,
-                          price: price,
-                          description: description,
-                          imageList: productMap[index]['images'],
-                        ),
-                        transition: Transition.rightToLeft),
                   ),
                 );
               })

@@ -1,6 +1,6 @@
 import 'package:ecommerce_code/API/fetch.dart';
-import 'package:ecommerce_code/Screens/Cart/prdouctDetail.dart';
-import 'package:ecommerce_code/Screens/Home/AllProducts.dart';
+import 'package:ecommerce_code/Screens/Products/AllProducts.dart';
+import 'package:ecommerce_code/Screens/Products/prdouctDetail.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/filterBtns.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
@@ -48,6 +48,7 @@ class _WishListScreenState extends State<WishListScreen> {
         ),
       ),
       body: ListView(
+        shrinkWrap: true,
         padding: AppLayout.screenSpace,
         scrollDirection: Axis.vertical,
         children: [
@@ -57,38 +58,9 @@ class _WishListScreenState extends State<WishListScreen> {
 
           //
           ProductListing(
-            itemCount: 7,
+            itemCount: 3,
             isfavourite: true,
           )
-        ],
-      ),
-    );
-  }
-}
-
-class Card extends StatelessWidget {
-  const Card({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      width: 50,
-      color: Colors.purple,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('hello'),
-          Text('hello'),
-          Text('hello'),
-          SizedBox(
-            height: 10,
-          ),
-          // PrimaryButton(
-          //   onTap: () {},
-          //   text: 'Redacted',
-          //   width: 80.w,
-          // )
         ],
       ),
     );

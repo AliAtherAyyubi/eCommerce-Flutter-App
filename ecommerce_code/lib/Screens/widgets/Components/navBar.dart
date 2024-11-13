@@ -42,9 +42,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
       hideOnScrollSettings: HideOnScrollSettings(
         hideNavBarOnScroll: true,
       ),
-      padding: EdgeInsets.symmetric(vertical: 2),
+      padding: EdgeInsets.symmetric(vertical: 6),
       handleAndroidBackButtonPress: true,
-      navBarStyle: NavBarStyle.style13,
+      navBarStyle: NavBarStyle.style6,
     );
   }
 }
@@ -59,7 +59,7 @@ PersistentBottomNavBarItem myNavBarItem({
     ),
     iconSize: 30,
     title: title,
-    textStyle: AppTypo.regular12,
+    textStyle: AppTypo.regular,
     activeColorPrimary: AppColor.dprimary,
     inactiveColorSecondary: Colors.white,
     inactiveColorPrimary: Colors.black,

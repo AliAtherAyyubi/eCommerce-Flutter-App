@@ -1,39 +1,29 @@
+import 'package:ecommerce_code/Screens/Products/prdouctDetail.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/starRating.dart';
 import 'package:ecommerce_code/Utils/Applayout.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:redacted/redacted.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProductCard extends StatefulWidget {
-  String? imageUrl;
-  String? title;
-  String? description;
-  double? price;
-  double? oldPrice;
-  double? discount;
-  double? rating;
   double? borderRadius;
 
   bool isShadow;
   bool isimageRadius;
   bool isfavourite;
-  VoidCallback? onTap;
+  Map<String, dynamic> productData = {};
+
   //
-  ProductCard(
-      {required this.title,
-      this.imageUrl,
-      required this.price,
-      this.oldPrice,
-      this.onTap,
-      this.borderRadius,
-      this.isimageRadius = false,
-      this.isShadow = true,
-      this.discount,
-      this.isfavourite = false,
-      this.description,
-      this.rating});
+  ProductCard({
+    required this.productData,
+    this.borderRadius,
+    this.isimageRadius = false,
+    this.isShadow = true,
+    this.isfavourite = false,
+  });
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -53,9 +43,17 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     bool favourite = widget.isfavourite;
-
+    Map<String, dynamic> product = widget.productData;
+//
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: () {
+        // print(product['description']);
+        Get.to(
+            ProductDetailScreen(
+              productData: product,
+            ),
+            transition: Transition.rightToLeft);
+      },
       child: Container(
         width: 50.w,
         height: 40.h,
@@ -81,7 +79,8 @@ class _ProductCardState extends State<ProductCard> {
                     widget.isimageRadius ? widget.borderRadius ?? 8 : 0),
                 child: Stack(
                   children: [
-                    Image.network(widget.imageUrl ?? AppLayout.defaultProduct,
+                    Image.network(
+                        product['thumbnail'] ?? AppLayout.defaultProduct,
                         height: 270,
                         width: 100.w,
                         fit: BoxFit.cover, errorBuilder: (BuildContext context,
@@ -94,7 +93,7 @@ class _ProductCardState extends State<ProductCard> {
                       );
                     }),
                     Positioned(
-                        top: 5,
+                        bottom: 5,
                         right: 5,
                         child: GestureDetector(
                           onTap: () {
@@ -111,7 +110,7 @@ class _ProductCardState extends State<ProductCard> {
                           child: Icon(
                             favourite ? Icons.favorite : Icons.favorite_border,
                             size: 25,
-                            color: favourite ? AppColor.white : Colors.white,
+                            color: AppColor.primary,
                           ),
                         ))
                   ],
@@ -124,63 +123,59 @@ class _ProductCardState extends State<ProductCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _getShortenedTitle(widget.title ?? "Product Title"),
+                    _getShortenedTitle(product['title'] ?? "Product Title"),
                     style: AppTypo.medium16,
                     overflow: TextOverflow.fade,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    widget.description!,
-                    maxLines: 2,
-                    textHeightBehavior: TextHeightBehavior(
-                        applyHeightToFirstAscent: false,
-                        applyHeightToLastDescent: false),
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTypo.regular.copyWith(
-                      fontSize: 10,
-                      height: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    '\$${widget.price}',
-                    style: AppTypo.medium14,
-                  ),
-                  if (widget.oldPrice != null) ...[
-                    Row(
-                      children: [
-                        Text(
-                          '\$${(widget.price! + 20)}  ', // Old price with dollar symbol
-                          style: AppTypo.regular.copyWith(
-                            color: Colors.grey, // Grey color for old price
-                            fontWeight: FontWeight.w200,
-                            decoration: TextDecoration
-                                .lineThrough, // Strike through effect
-                            fontSize: 12,
-                          ),
+                  const SizedBox(height: 10),
+                  // Text(
+                  //   product['description'],
+                  //   maxLines: 2,
+                  //   textHeightBehavior: TextHeightBehavior(
+                  //       applyHeightToFirstAscent: false,
+                  //       applyHeightToLastDescent: false),
+                  //   overflow: TextOverflow.ellipsis,
+                  //   style: AppTypo.regular.copyWith(
+                  //     fontSize: 10,
+                  //     height: 1,
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 5),
+
+                  Row(
+                    children: [
+                      Text(
+                        '\$${product['price']}',
+                        style: AppTypo.medium14,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${product["discountPercentage"].round()}% off', // Discount text
+                        style: AppTypo.regular.copyWith(
+                          color: Color(0xffFE735C), // Red color for discount
+                          fontSize: 10,
                         ),
-                        Text(
-                          '${widget.discount}% off', // Discount text
-                          style: AppTypo.regular.copyWith(
-                            color: Color(0xffFE735C), // Red color for discount
-                            fontSize: 10,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                  // Row(
-                  //   children: [
-                  //     StarRatingWidget(),
-                  //     SizedBox(width: 5),
-                  //     Text(
-                  //       '( ${widget.rating} )',
-                  //       style: AppTypo.regular.copyWith(
-                  //           fontSize: 10,
-                  //           color: Color.fromARGB(255, 78, 119, 202)),
-                  //     ),
-                  //   ],
-                  // )
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      StarRating(
+                        rating:
+                            double.parse(product["rating"].toStringAsFixed(1)),
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                        "${product["rating"].toStringAsFixed(1)}",
+                        style: AppTypo.regular12,
+                      ),
+                    ],
+                  )
                 ],
               ),
             )

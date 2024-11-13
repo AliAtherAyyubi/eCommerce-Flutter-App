@@ -1,3 +1,4 @@
+import 'package:ecommerce_code/Screens/onboarding/onboarding.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/appBar.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Utils/Applayout.dart';
@@ -5,18 +6,19 @@ import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.screenClr,
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: CustomAppBar(title: 'OTP Verificatioin')),
-      body: SafeArea(
-        child: ListView(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColor.screenClr,
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(50),
+            child: CustomAppBar(title: 'OTP Verification')),
+        body: ListView(
           padding: AppLayout.screenSpace,
           children: [
             const SizedBox(height: 16),
@@ -26,16 +28,17 @@ class OtpScreen extends StatelessWidget {
                 fontSize: 24,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+
             Text(
-              "We sent your code to +1 898 860 *** \nThis code will expired in 00:30",
+              "We sent code to your email \nThis code will expired in 00:30",
               textAlign: TextAlign.center,
               style: AppTypo.medium14.copyWith(color: AppColor.grey),
             ),
             // const SizedBox(height: 16),
             SizedBox(height: MediaQuery.of(context).size.height * 0.1),
             const OtpForm(),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+            // SizedBox(height: MediaQuery.of(context).size.height * 0.2),
             TextButton(
               onPressed: () {},
               child: const Text(
@@ -73,7 +76,11 @@ class OtpForm extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          PrimaryButton(onTap: () {}, text: 'Continue')
+          PrimaryButton(
+              onTap: () {
+                Get.to(OnBoardingScreen(), transition: Transition.native);
+              },
+              text: 'Continue')
         ],
       ),
     );

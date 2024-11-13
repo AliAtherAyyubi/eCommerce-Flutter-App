@@ -16,7 +16,7 @@ class CartScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: CustomAppBar(
-          title: 'Checkout',
+          title: 'Cart',
           isleading: false,
         ),
       ),

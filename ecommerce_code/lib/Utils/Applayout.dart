@@ -5,5 +5,5 @@ class AppLayout {
       EdgeInsets.symmetric(horizontal: 15, vertical: 10);
 
   static String defaultProduct =
-      'https://img.freepik.com/free-vector/removing-goods-from-basket-refusing-purchase-changing-decision-item-deletion-emptying-trash-online-shopping-app-laptop-user-cartoon-character_335657-2566.jpg?t=st=1728801053~exp=1728804653~hmac=f9686bad3e4a4cdcb0f5c3e69feacf272d4fbeafc3f5b1d44b460ad247de9434&w=740';
+      'https://www.freepik.com/free-vector/404-error-isometric-illustration_7740133.htm#fromView=search&page=1&position=37&uuid=2b6d99fc-06f5-4c5e-a592-84f852aada68';
 }

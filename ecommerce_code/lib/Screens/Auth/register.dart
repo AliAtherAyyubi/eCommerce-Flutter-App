@@ -1,4 +1,5 @@
 import 'package:ecommerce_code/Screens/Auth/login.dart';
+import 'package:ecommerce_code/Screens/Auth/otp.dart';
 import 'package:ecommerce_code/Screens/onboarding/onboarding.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/textfield.dart';
@@ -93,8 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   PrimaryButton(
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        Get.to(OnBoardingScreen(),
-                            transition: Transition.native);
+                        Get.to(OtpScreen(), transition: Transition.native);
                       }
                     },
                     text: 'Create Account',

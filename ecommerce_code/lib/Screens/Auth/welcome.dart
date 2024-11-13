@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:ecommerce_code/Screens/MainScreen.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -58,7 +60,9 @@ class WelcomeScreen extends StatelessWidget {
                     height: 30,
                   ),
                   PrimaryButton(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(MainScreen(), transition: Transition.native);
+                    },
                     text: 'Get Started',
                     width: 80.w,
                     fontSize: 23,

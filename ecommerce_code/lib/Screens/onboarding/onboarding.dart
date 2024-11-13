@@ -1,3 +1,4 @@
+import 'package:ecommerce_code/Screens/Auth/welcome.dart';
 import 'package:ecommerce_code/Screens/MainScreen.dart';
 import 'package:ecommerce_code/Screens/onboarding/onboardCard.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/button.dart';
@@ -61,7 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               elevation: 0,
               onTap: () {
                 if (_currentIndex == onBoardinglist.length - 1) {
-                  Get.to(MainScreen(), transition: Transition.native);
+                  Get.to(WelcomeScreen(), transition: Transition.native);
                 } else {
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 500),

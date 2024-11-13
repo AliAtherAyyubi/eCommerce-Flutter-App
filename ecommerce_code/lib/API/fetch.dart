@@ -15,9 +15,51 @@ class Store {
       // Sending GET request to the API
       final response = await http.get(url);
 
-      final List<dynamic> productData = json.decode(response.body);
-      // final Map<String, dynamic> productData =
-      //     jsonData[0] as Map<String, dynamic>;
+      final Map<String, dynamic> mapData = json.decode(response.body);
+      final List<dynamic> productData = mapData['products'];
+
+      // print(productData);
+      return productData;
+    } catch (error) {
+      // Handle network or parsing error
+      print('Error fetching product: $error');
+      return [];
+    }
+  }
+
+  Future<List<dynamic>> searchProducts(String query) async {
+    final String baseUrl = HelperAPI.searchUrl;
+
+    final url = Uri.parse(baseUrl + query);
+
+    try {
+      // Sending GET request to the API
+      final response = await http.get(url);
+
+      final Map<String, dynamic> mapData = json.decode(response.body);
+      final List<dynamic> productData = mapData['products'];
+
+      // print(productData);
+      return productData;
+    } catch (error) {
+      // Handle network or parsing error
+      print('Error fetching product: $error');
+      return [];
+    }
+  }
+
+  Future<List<dynamic>> getProductByCategory(String category) async {
+    final String baseUrl = HelperAPI.categoryUrl;
+
+    final url = Uri.parse(baseUrl + category);
+
+    try {
+      // Sending GET request to the API
+      final response = await http.get(url);
+
+      final Map<String, dynamic> mapData = json.decode(response.body);
+      final List<dynamic> productData = mapData['products'];
+
       // print(productData);
       return productData;
     } catch (error) {

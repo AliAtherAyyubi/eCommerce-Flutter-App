@@ -21,7 +21,7 @@ class AppColor {
   static Color lightDark = Color(0xff575757);
   static Color black = Colors.black;
   static Color black2 = Color(0xff232327);
-  static Color yello = Color(0xffEDB310);
+  static Color yello = Color(0xffFFDF00);
   static Color lightPink = Color(0xffFFCCD5);
   static Color lightBlue = Color(0xff4392F9);
   static Color screenClr = Color(0xffFDFDFD);

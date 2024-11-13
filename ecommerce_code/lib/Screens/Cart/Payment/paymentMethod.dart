@@ -3,6 +3,7 @@ import 'package:ecommerce_code/Screens/Cart/Payment/visa_master.dart';
 import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:ecommerce_code/Utils/typo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PaymentMethodChoiceW extends StatefulWidget {
@@ -26,9 +27,9 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
   void formSize(int index) {
     double tempIndex;
     if (index == 0) {
-      tempIndex = 55.h;
+      tempIndex = 80.h;
     } else if (index == 1) {
-      tempIndex = 10.h;
+      tempIndex = 12.h;
     } else if (index == 2) {
       tempIndex = 55.h;
     } else if (index == 3) {
@@ -89,9 +90,8 @@ class _PaymentMethodChoiceWState extends State<PaymentMethodChoiceW> {
         SizedBox(
           height: formHeight,
           child: PageView.builder(
-              scrollDirection: Axis.horizontal,
               itemCount: paymentCards.length,
-              physics: const BouncingScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               itemBuilder: (context, index) {
                 return paymentCards[paymentIndex];

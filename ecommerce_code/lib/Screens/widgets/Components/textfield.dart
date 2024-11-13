@@ -117,12 +117,14 @@ class SearchInput extends StatelessWidget {
   final double? height;
   final Color? fillColor;
   final VoidCallback? onTap;
+  final VoidCallback? onSubmit;
   SearchInput(
       {required this.textController,
       required this.hintText,
       this.height,
       this.fillColor,
       this.onTap,
+      this.onSubmit,
       super.key});
   OutlineInputBorder borderStyle = const OutlineInputBorder(
     borderSide: BorderSide.none,
@@ -144,6 +146,9 @@ class SearchInput extends StatelessWidget {
         controller: textController,
         onChanged: (value) {
           //Do something wi
+        },
+        onSubmitted: (value) {
+          onSubmit!();
         },
         onTap: onTap,
         decoration: InputDecoration(

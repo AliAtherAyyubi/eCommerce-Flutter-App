@@ -38,6 +38,7 @@ class PaymentScreen extends StatelessWidget {
       ),
       body: ListView(
         padding: AppLayout.screenSpace,
+        shrinkWrap: true,
         children: [
           SizedBox(
             height: 20,
@@ -85,7 +86,7 @@ class PaymentScreen extends StatelessWidget {
           RowText(
             title: 'Total',
             titleStyle: AppTypo.medium16.copyWith(fontSize: 18),
-            rightText: '\$ $total',
+            rightText: '\$ ${total.toStringAsFixed(2)}',
             rightStyle: AppTypo.semibold14,
           ),
           SizedBox(

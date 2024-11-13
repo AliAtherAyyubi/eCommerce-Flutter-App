@@ -13,27 +13,30 @@ class FashionItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Column(
-        children: [
-          // Circular image
-          ClipOval(
-            child: Image.asset(
-              image ?? "assets/images/profile.png",
-              height: 70,
-              width: 70,
-              fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          children: [
+            // Circular image
+            ClipOval(
+              child: Image.asset(
+                image ?? "assets/images/profile.png",
+                height: 70,
+                width: 70,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          const SizedBox(height: 5),
-          // Text below the image
-          Text(
-            title ?? 'Fashion',
-            style: AppTypo.regular14.copyWith(
-              fontSize: 12,
-              color: Color(0xFF21003D),
+            const SizedBox(height: 5),
+            // Text below the image
+            Text(
+              title ?? 'Fashion',
+              style: AppTypo.regular14.copyWith(
+                fontSize: 12,
+                color: Color(0xFF21003D),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

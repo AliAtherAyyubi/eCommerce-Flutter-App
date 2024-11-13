@@ -1,3 +1,5 @@
 class HelperAPI {
-  static String allProductsUrl = 'https://api.escuelajs.co/api/v1/products';
+  static String allProductsUrl = 'https://dummyjson.com/products';
+  static String searchUrl = 'https://dummyjson.com/products/search?q=';
+  static String categoryUrl = 'https://dummyjson.com/products/category/';
 }

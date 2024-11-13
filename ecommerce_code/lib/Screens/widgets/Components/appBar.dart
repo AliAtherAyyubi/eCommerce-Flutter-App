@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget {
   TextEditingController searchController;
-  HomeAppBar({super.key, required this.searchController});
+  final VoidCallback? onSubmit;
+
+  HomeAppBar({super.key, required this.searchController, this.onSubmit});
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +33,15 @@ class HomeAppBar extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(bottom: 5),
           child: SearchInput(
-              textController: searchController,
-              hintText: 'Search any Product...'),
+            textController: searchController,
+            hintText: 'Search any Product...',
+            onSubmit: onSubmit,
+          ),
         ),
       ),
       elevation: 0,
       backgroundColor: AppColor.screenClr,
+      forceMaterialTransparency: true,
     );
   }
 }
@@ -86,6 +91,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
       backgroundColor: AppColor.screenClr,
       elevation: 0, // Optional: no shadow
+      forceMaterialTransparency: true,
     );
   }
 

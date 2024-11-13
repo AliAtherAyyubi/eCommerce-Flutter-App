@@ -1,6 +1,7 @@
 import 'package:ecommerce_code/Screens/Auth/login.dart';
 import 'package:ecommerce_code/Screens/onboarding/onboarding.dart';
 import 'package:ecommerce_code/Screens/widgets/Components/logo.dart';
+import 'package:ecommerce_code/Utils/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -25,6 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white, body: MyLogo());
+    return Scaffold(backgroundColor: AppColor.screenClr, body: MyLogo());
   }
 }

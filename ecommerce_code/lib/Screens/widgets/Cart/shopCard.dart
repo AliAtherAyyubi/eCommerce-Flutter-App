@@ -73,55 +73,7 @@ class _ShoppingCardState extends State<ShoppingCard> {
                       style: AppTypo.semibold14,
                     ),
                     SizedBox(height: 8),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Variations : ',
-                            style: AppTypo.medium12,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          ...List.generate(
-                            widget.choices!.length,
-                            (int index) {
-                              // choice chip allow us to
-                              // set its properties.
-                              return Padding(
-                                padding: EdgeInsets.only(right: 10),
-                                child: ChoiceChip(
-                                  padding: EdgeInsets.symmetric(horizontal: 2),
-                                  backgroundColor: Colors.white,
-                                  showCheckmark: false,
-
-                                  label: Text(
-                                    '${widget.choices![index]}',
-                                    style: AppTypo.medium12.copyWith(
-                                        fontSize: 14,
-                                        color: _value == index
-                                            ? Colors.white
-                                            : Colors.black),
-                                  ),
-                                  // color of selected chip
-                                  selectedColor: AppColor.primary,
-                                  // selected chip value
-                                  selected: _value == index,
-                                  // onselected method
-                                  onSelected: (bool selected) {
-                                    setState(() {
-                                      _value = selected ? index : null;
-                                    });
-                                  },
-                                ),
-                              );
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 8),
+                    //
                     Row(
                       children: [
                         Text(
@@ -131,7 +83,9 @@ class _ShoppingCardState extends State<ShoppingCard> {
                         ),
                         SizedBox(width: 4),
                         // Stars for rating
-                        StarRatingWidget()
+                        StarRating(
+                          rating: widget.rating,
+                        )
                       ],
                     ),
                     SizedBox(
@@ -199,3 +153,53 @@ class _ShoppingCardState extends State<ShoppingCard> {
     );
   }
 }
+//
+// SingleChildScrollView(
+//   scrollDirection: Axis.horizontal,
+//   child: Row(
+//     children: [
+//       Text(
+//         'Variations : ',
+//         style: AppTypo.medium12,
+//       ),
+//       SizedBox(
+//         width: 10,
+//       ),
+//       ...List.generate(
+//         widget.choices!.length,
+//         (int index) {
+//           // choice chip allow us to
+//           // set its properties.
+//           return Padding(
+//             padding: EdgeInsets.only(right: 10),
+//             child: ChoiceChip(
+//               padding: EdgeInsets.symmetric(horizontal: 2),
+//               backgroundColor: Colors.white,
+//               showCheckmark: false,
+
+//               label: Text(
+//                 '${widget.choices![index]}',
+//                 style: AppTypo.medium12.copyWith(
+//                     fontSize: 14,
+//                     color: _value == index
+//                         ? Colors.white
+//                         : Colors.black),
+//               ),
+//               // color of selected chip
+//               selectedColor: AppColor.primary,
+//               // selected chip value
+//               selected: _value == index,
+//               // onselected method
+//               onSelected: (bool selected) {
+//                 setState(() {
+//                   _value = selected ? index : null;
+//                 });
+//               },
+//             ),
+//           );
+//         },
+//       )
+//     ],
+//   ),
+// ),
+// SizedBox(height: 8),
