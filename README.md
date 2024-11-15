@@ -30,9 +30,10 @@ This project was built using the following technologies:
 
 # Screenshot
 
-<p>
-  <img src="https://github.com/AliAtherAyyubi/eCommerce-Flutter-App/blob/main/Screenshots/banner.png" alt="Screenshot 1"/> &nbsp
-</p>
+ <img src="https://github.com/AliAtherAyyubi/eCommerce-Flutter-App/blob/main/Screenshots/Auth.png" alt="Screenshot 1"/> 
+
+ <img src="https://github.com/AliAtherAyyubi/eCommerce-Flutter-App/blob/main/Screenshots/Features.png" alt="Screenshot 1"/>
+
 
 
 
